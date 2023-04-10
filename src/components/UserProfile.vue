@@ -10,17 +10,17 @@
       </div>
     </div>
     <div class="user-profile__qwacks-wrapper">
-      <div class="user-profile__qwacks" v-for="qwack in user.qwacks" :key="qwack.id">
-        {{ qwack.content }}
-      </div>
+      <QwackItem v-for="qwack in user.qwacks" :key="qwack.id" :username="user.username" :qwack="qwack" @favourite="toggleFavourite" />
     </div>
   </div>
 </template>
 
 <script>
+import QwackItem from "./QwackItem.vue";
 
 export default {
   name: 'UserProfile',
+  components: { QwackItem },
   data() {
     return {
       followers: 0,
@@ -53,6 +53,9 @@ export default {
   methods: {
     followUser() {
       this.followers++;
+    },
+    toggleFavourite(id) {
+      console.log(`Favourite qwack #${id}`);
     }
   },
   mounted() {
