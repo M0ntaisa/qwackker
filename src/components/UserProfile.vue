@@ -9,6 +9,11 @@
         <strong>Followers: </strong> {{ followers }}
       </div>
     </div>
+    <div class="user-profile__qwacks-wrapper">
+      <div class="user-profile__qwacks" v-for="qwack in user.qwacks" :key="qwack.id">
+        {{ qwack.content }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,7 +30,11 @@ export default {
         firstName: 'Monochrome',
         lastName: 'Taisa',
         email: 'm0.taisa@gmail.com',
-        isAdmin: true
+        isAdmin: true,
+        qwacks: [
+          { id: 1, content: 'qwackker is pogger' },
+          { id: 2, content: 'SHUBAA SHUBA SHUBAAAA!!' },
+        ]
       }
     }
   },
