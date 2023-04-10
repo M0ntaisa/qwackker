@@ -10,7 +10,13 @@
       </div>
     </div>
     <div class="user-profile__qwacks-wrapper">
-      <QwackItem v-for="qwack in user.qwacks" :key="qwack.id" :username="user.username" :qwack="qwack" @favourite="toggleFavourite" />
+      <QwackItem 
+        v-for="qwack in user.qwacks" 
+        :key="qwack.id" 
+        :username="user.username" 
+        :qwack="qwack" 
+        @favourite="toggleFavourite" 
+      />
     </div>
   </div>
 </template>
