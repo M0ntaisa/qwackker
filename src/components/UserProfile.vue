@@ -8,7 +8,7 @@
       <div class="user-profile__follower-count">
         <strong>Followers: </strong> {{ followers }}
       </div>
-      <form action="" class="user-profile__create-qwack">
+      <form class="user-profile__create-qwack" @submit.prevent="createNewQwack">
         <label for="newQwack"><strong>New Qwack</strong></label>
         <textarea name="newQwack" id="newQwack" rows="4" v-model="newQwackContent"></textarea>
 
@@ -20,6 +20,10 @@
             </option>
           </select>
         </div>
+
+        <button>
+          Qwack!
+        </button>
       </form>
     </div>
     <div class="user-profile__qwacks-wrapper">
@@ -81,6 +85,16 @@ export default {
     },
     toggleFavourite(id) {
       console.log(`Favourite qwack #${id}`);
+    },
+    createNewQwack() {
+      if (this.newQwackContent && this.selectedQwackType !== 'draft') {
+        this.user.qwacks.unshift(  {
+          id: this.user.qwacks.length + 1,
+          content: this.newQwackContent
+        })
+
+        this.newQwackContent = '';
+      }
     }
   },
   mounted() {
