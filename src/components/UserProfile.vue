@@ -10,11 +10,11 @@
       </div>
       <form action="" class="user-profile__create-qwack">
         <label for="newQwack"><strong>New Qwack</strong></label>
-        <textarea name="newQwack" id="newQwack" rows="4"></textarea>
+        <textarea name="newQwack" id="newQwack" rows="4" v-model="newQwackContent"></textarea>
 
         <div class="user-profile__create-qwack-type">
           <label for="newQwackType"><strong>Type: </strong></label>
-          <select name="newQwackType" id="newQwackType">
+          <select name="newQwackType" id="newQwackType" v-model="selectedQwackType">
             <option :value="option.value" v-for="(option, index) in qwackTypes" :key="index">
               {{ option.name }}
             </option>
@@ -58,7 +58,9 @@ export default {
       qwackTypes: [
         { value: 'draft', name: 'Draft' },
         { value: 'instant', name: 'Instant Qwack' }
-      ]
+      ],
+      newQwackContent: '',
+      selectedQwackType: 'instant',
     }
   },
   watch: {
