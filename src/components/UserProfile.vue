@@ -103,47 +103,49 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
   .user-profile {
     display: grid;
     grid-template-columns: 1fr 3fr;
     width: auto;
     padding: 50px 5%;
+
+    .user-profile__user-panel {
+      display: flex;
+      flex-direction: column;
+      margin-right: 50px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid #DFE3E8;
+
+      h1 {
+        margin: 0;
+      }
+
+      .user-profile__admin-badge {
+        background: rebeccapurple;
+        color: white;
+        border-radius: 5px;
+        margin: 5px auto 5px 0;
+        padding: 0 10px;
+        font-weight: bold;
+        font-size: small;
+      }
+
+      .user-profile__create-qwack {
+        border-top: 1px solid #DFE3E8;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .user-profile__qwacks-wrapper {
+      display: grid;
+      grid-gap: 5px;
+    }
   }
 
-  .user-profile__user-panel {
-    display: flex;
-    flex-direction: column;
-    margin-right: 50px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid #DFE3E8;
-  }
-
-  .user-profile__admin-badge {
-    background: rebeccapurple;
-    color: white;
-    border-radius: 5px;
-    margin: 5px auto 5px 0;
-    padding: 0 10px;
-    font-weight: bold;
-    font-size: small;
-  }
-
-  h1 {
-    margin: 0;
-  }
-
-  .user-profile__qwacks-wrapper {
-    display: grid;
-    grid-gap: 5px;
-  }
-
-  .user-profile__create-qwack {
-    border-top: 1px solid #DFE3E8;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column;
-  }
+  
 </style>

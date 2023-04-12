@@ -32,7 +32,7 @@
   };
 </script>
 
-<style>
+<style lang="scss" scoped>
   .qwack-item {
     padding: 20px;
     background-color: white;
@@ -41,13 +41,15 @@
     box-sizing: border-box;
     cursor: pointer;
     transition: all 0.25s ease;
+
+    &:hover {
+      transform: scale(1.05, 1.05);
+    }
+
+    .qwack-item__user {
+      font-weight: bold;
+    }
   }
 
-  .qwack-item:hover {
-    transform: scale(1.05, 1.05);
-  }
-
-  .qwack-item__user {
-    font-weight: bold;
-  }
+  
 </style>
