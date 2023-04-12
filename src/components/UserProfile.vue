@@ -8,6 +8,10 @@
       <div class="user-profile__follower-count">
         <strong>Followers: </strong> {{ followers }}
       </div>
+      <form action="" class="user-profile__create-qwack">
+        <label for="newQwack"><strong>New Qwack</strong></label>
+        <textarea name="newQwack" id="newQwack" rows="4"></textarea>
+      </form>
     </div>
     <div class="user-profile__qwacks-wrapper">
       <QwackItem 
@@ -95,9 +99,22 @@ export default {
     margin: 5px auto 5px 0;
     padding: 0 10px;
     font-weight: bold;
+    font-size: small;
   }
 
   h1 {
     margin: 0;
+  }
+
+  .user-profile__qwacks-wrapper {
+    display: grid;
+    grid-gap: 5px;
+  }
+
+  .user-profile__create-qwack {
+    border-top: 1px solid #DFE3E8;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
   }
 </style>

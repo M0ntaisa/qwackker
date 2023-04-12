@@ -34,7 +34,6 @@
 
 <style>
   .qwack-item {
-    margin: 2px;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
