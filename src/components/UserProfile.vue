@@ -8,8 +8,8 @@
       <div class="user-profile__follower-count">
         <strong>Followers: </strong> {{ followers }}
       </div>
-      <form class="user-profile__create-qwack" @submit.prevent="createNewQwack">
-        <label for="newQwack"><strong>New Qwack</strong></label>
+      <form class="user-profile__create-qwack" @submit.prevent="createNewQwack" :class="{ '--exceeded': newQwackCharCount > 180 }">
+        <label for="newQwack"><strong>New Qwack</strong> ({{ newQwackCharCount }}/180)</label>
         <textarea name="newQwack" id="newQwack" rows="4" v-model="newQwackContent"></textarea>
 
         <div class="user-profile__create-qwack-type">
@@ -75,8 +75,8 @@ export default {
     }
   },
   computed: {
-    fullName() {
-      return `${this.user.firstName} ${this.user.lastName}`;
+    newQwackCharCount() {
+      return this.newQwackContent.length;
     }
   },
   methods: {
@@ -138,6 +138,17 @@ export default {
         padding-top: 10px;
         display: flex;
         flex-direction: column;
+
+        &.--exceeded {
+          color: lightcoral;
+          border-color: lightcoral;
+          
+          button {
+            background-color: lightcoral;
+            border: none;
+            color: white;
+          }
+        }
       }
     }
 
