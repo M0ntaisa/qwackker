@@ -74,7 +74,7 @@ export default {
   .user-profile {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    width: 100%;
+    width: auto;
     padding: 50px 5%;
   }
 
