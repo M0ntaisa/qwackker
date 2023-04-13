@@ -24,11 +24,6 @@
         required: true
       }
     },
-    methods: {
-      favouriteQwack(id) {
-        this.$emit('favourite', id)
-      }
-    }
   };
 </script>
 

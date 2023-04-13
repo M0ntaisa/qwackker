@@ -8,24 +8,8 @@
       <div class="user-profile__follower-count">
         <strong>Followers: </strong> {{ followers }}
       </div>
-      <form class="user-profile__create-qwack" @submit.prevent="createNewQwack" :class="{ '--exceeded': newQwackCharCount > 180 }">
-        <label for="newQwack"><strong>New Qwack</strong> ({{ newQwackCharCount }}/180)</label>
-        <textarea name="newQwack" id="newQwack" rows="4" v-model="newQwackContent"></textarea>
-
-        <div class="user-profile__create-qwack-type">
-          <label for="newQwackType"><strong>Type: </strong></label>
-          <select name="newQwackType" id="newQwackType" v-model="selectedQwackType">
-            <option :value="option.value" v-for="(option, index) in qwackTypes" :key="index">
-              {{ option.name }}
-            </option>
-          </select>
-        </div>
-
-        <button>
-          Qwack!
-        </button>
-      </form>
     </div>
+    <CreateQwackPanel @add-qwack="addQwack" />
     <div class="user-profile__qwacks-wrapper">
       <QwackItem 
         v-for="qwack in user.qwacks" 
@@ -40,10 +24,11 @@
 
 <script>
 import QwackItem from "./QwackItem.vue";
+import CreateQwackPanel from "./CreateQwackPanel.vue";
 
 export default {
   name: 'UserProfile',
-  components: { QwackItem },
+  components: { QwackItem, CreateQwackPanel },
   data() {
     return {
       followers: 0,
@@ -59,12 +44,7 @@ export default {
           { id: 2, content: 'SHUBAA SHUBA SHUBAAAA!!' },
         ]
       },
-      qwackTypes: [
-        { value: 'draft', name: 'Draft' },
-        { value: 'instant', name: 'Instant Qwack' }
-      ],
-      newQwackContent: '',
-      selectedQwackType: 'instant',
+      
     }
   },
   watch: {
@@ -74,31 +54,12 @@ export default {
       }
     }
   },
-  computed: {
-    newQwackCharCount() {
-      return this.newQwackContent.length;
-    }
-  },
   methods: {
-    followUser() {
-      this.followers++;
-    },
-    toggleFavourite(id) {
-      console.log(`Favourite qwack #${id}`);
-    },
-    createNewQwack() {
-      if (this.newQwackContent && this.selectedQwackType !== 'draft') {
-        this.user.qwacks.unshift(  {
-          id: this.user.qwacks.length + 1,
-          content: this.newQwackContent
-        })
-
-        this.newQwackContent = '';
-      }
-    }
-  },
-  mounted() {
-    this.followUser();
+    addQwack(qwack) {
+      this.user.qwacks.unshift({
+        id: this.user.qwacks.length + 1, content: qwack
+      });
+    }  
   },
 }
 </script>
@@ -107,6 +68,7 @@ export default {
   .user-profile {
     display: grid;
     grid-template-columns: 1fr 3fr;
+    grid-gap: 50px;
     width: auto;
     padding: 50px 5%;
 
@@ -132,29 +94,12 @@ export default {
         font-weight: bold;
         font-size: small;
       }
-
-      .user-profile__create-qwack {
-        border-top: 1px solid #DFE3E8;
-        padding-top: 10px;
-        display: flex;
-        flex-direction: column;
-
-        &.--exceeded {
-          color: lightcoral;
-          border-color: lightcoral;
-          
-          button {
-            background-color: lightcoral;
-            border: none;
-            color: white;
-          }
-        }
-      }
     }
 
     .user-profile__qwacks-wrapper {
       display: grid;
       grid-gap: 5px;
+      margin-bottom: auto;
     }
   }
 
