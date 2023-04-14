@@ -58,6 +58,7 @@
 
     textarea {
       border: 1px solid #DFE3E8;
+      border-radius: 5px;
     }
 
     .create-qwack-panel__submit {

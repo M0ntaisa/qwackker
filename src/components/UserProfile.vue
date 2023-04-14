@@ -1,15 +1,17 @@
 <template>
   <div class="user-profile">
-    <div class="user-profile__user-panel">
-      <h1 class="user-profile__username">@{{ user.username }}</h1>
-      <div class="user-profile__admin-badge" v-if="user.isAdmin">
-        Admin
+    <div class="user-profile__sidebar">
+      <div class="user-profile__user-panel">
+        <h1 class="user-profile__username">@{{ user.username }}</h1>
+        <div class="user-profile__admin-badge" v-if="user.isAdmin">
+          Admin
+        </div>
+        <div class="user-profile__follower-count">
+          <strong>Followers: </strong> {{ followers }}
+        </div>
       </div>
-      <div class="user-profile__follower-count">
-        <strong>Followers: </strong> {{ followers }}
-      </div>
+      <CreateQwackPanel @add-qwack="addQwack" />
     </div>
-    <CreateQwackPanel @add-qwack="addQwack" />
     <div class="user-profile__qwacks-wrapper">
       <QwackItem 
         v-for="qwack in user.qwacks" 
@@ -69,17 +71,17 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 50px;
-    width: auto;
     padding: 50px 5%;
 
     .user-profile__user-panel {
       display: flex;
       flex-direction: column;
-      margin-right: 50px;
+      // margin-right: 50px;
       padding: 20px;
       background-color: white;
       border-radius: 5px;
       border: 1px solid #DFE3E8;
+      margin-bottom: auto;
 
       h1 {
         margin: 0;
