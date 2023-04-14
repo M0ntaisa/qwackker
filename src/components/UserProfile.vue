@@ -2,37 +2,37 @@
   <div class="user-profile">
     <div class="user-profile__sidebar">
       <div class="user-profile__user-panel">
-        <h1 class="user-profile__username">@{{ user.username }}</h1>
-        <div class="user-profile__admin-badge" v-if="user.isAdmin">
+        <h1 class="user-profile__username">@{{ state.user.username }}</h1>
+        <div class="user-profile__admin-badge" v-if="state.user.isAdmin">
           Admin
         </div>
         <div class="user-profile__follower-count">
-          <strong>Followers: </strong> {{ followers }}
+          <strong>Followers: </strong> {{ state.followers }}
         </div>
       </div>
       <CreateQwackPanel @add-qwack="addQwack" />
     </div>
     <div class="user-profile__qwacks-wrapper">
       <QwackItem 
-        v-for="qwack in user.qwacks" 
+        v-for="qwack in state.user.qwacks" 
         :key="qwack.id" 
-        :username="user.username" 
+        :username="state.user.username" 
         :qwack="qwack" 
-        @favourite="toggleFavourite" 
       />
     </div>
   </div>
 </template>
 
 <script>
+import { reactive } from "vue";
 import QwackItem from "./QwackItem.vue";
 import CreateQwackPanel from "./CreateQwackPanel.vue";
 
 export default {
   name: 'UserProfile',
   components: { QwackItem, CreateQwackPanel },
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       followers: 0,
       user: {
         id: 1,
@@ -46,22 +46,18 @@ export default {
           { id: 2, content: 'SHUBAA SHUBA SHUBAAAA!!' },
         ]
       },
-      
-    }
-  },
-  watch: {
-    followers(newFollowerCount, oldFollowerCount) {
-      if (oldFollowerCount < newFollowerCount) {
-        console.log(`${this.user.username} has gained a follower!`);
-      }
-    }
-  },
-  methods: {
-    addQwack(qwack) {
-      this.user.qwacks.unshift({
-        id: this.user.qwacks.length + 1, content: qwack
+    });
+
+    const addQwack = (qwack) => {
+      state.user.qwacks.unshift({
+        id: state.user.qwacks.length + 1, content: qwack
       });
-    }  
+    }
+
+    return {
+      state,
+      addQwack
+    }
   },
 }
 </script>
