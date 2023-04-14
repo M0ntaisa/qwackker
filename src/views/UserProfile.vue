@@ -25,8 +25,8 @@
 
 <script>
 import { reactive } from "vue";
-import QwackItem from "./QwackItem.vue";
-import CreateQwackPanel from "./CreateQwackPanel.vue";
+import QwackItem from "@/components/QwackItem.vue";
+import CreateQwackPanel from "@/components/CreateQwackPanel.vue";
 
 export default {
   name: 'UserProfile',
