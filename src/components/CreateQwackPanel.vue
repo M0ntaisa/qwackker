@@ -1,13 +1,13 @@
 <template>
   <form class="create-qwack-panel" @submit.prevent="createNewQwack" :class="{ '--exceeded': newQwackCharCount > 180 }">
       <label for="newQwack"><strong>New Qwack</strong> ({{ newQwackCharCount }}/180)</label>
-      <textarea name="newQwack" id="newQwack" rows="4" v-model="newQwackContent"></textarea>
+      <textarea name="newQwack" id="newQwack" rows="4" v-model="state.newQwackContent"></textarea>
 
       <div class="create-qwack-panel__submit">
         <div class="create-qwack-type">
           <label for="newQwackType"><strong>Type: </strong></label>
-          <select name="newQwackType" id="newQwackType" v-model="selectedQwackType">
-            <option :value="option.value" v-for="(option, index) in qwackTypes" :key="index">
+          <select name="newQwackType" id="newQwackType" v-model="state.selectedQwackType">
+            <option :value="option.value" v-for="(option, index) in state.qwackTypes" :key="index">
               {{ option.name }}
             </option>
           </select>
@@ -21,31 +21,35 @@
 </template>
 
 <script>
+  import { reactive, computed } from 'vue';
+
   export default {
     name: "CreateQwackPanel",
-    data() {
-      return {
+    setup(props, ctx) {
+      const state = reactive({
         qwackTypes: [
           { value: 'draft', name: 'Draft' },
           { value: 'instant', name: 'Instant Qwack' }
         ],
         newQwackContent: '',
         selectedQwackType: 'instant',
-      }
-    },
-    computed: {
-      newQwackCharCount() {
-        return this.newQwackContent.length;
-      }
-    },
-    methods: {
-      createNewQwack() {
-        if (this.newQwackContent && this.selectedQwackType !== 'draft') {
-          this.$emit('add-qwack', this.newQwackContent);
-          this.newQwackContent = '';
+      });
+
+      const newQwackCharCount = computed(() => state.newQwackContent.length);
+
+      const createNewQwack = () => {
+        if (state.newQwackContent && state.selectedQwackType !== 'draft') {
+          ctx.emit('add-qwack', state.newQwackContent);
+          state.newQwackContent = '';
         }
       }
-    }
+
+      return {
+        state,
+        newQwackCharCount,
+        createNewQwack
+      }
+    },
   };
 </script>
 
