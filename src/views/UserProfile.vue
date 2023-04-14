@@ -24,7 +24,9 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
+import { useRoute } from "vue-router";
+import { users } from "@/assets/users.js"
 import QwackItem from "@/components/QwackItem.vue";
 import CreateQwackPanel from "@/components/CreateQwackPanel.vue";
 
@@ -32,20 +34,12 @@ export default {
   name: 'UserProfile',
   components: { QwackItem, CreateQwackPanel },
   setup() {
+    const route = useRoute();
+    const userId = computed(() => route.params.userId)
+
     const state = reactive({
       followers: 0,
-      user: {
-        id: 1,
-        username: 'm0ntaisa',
-        firstName: 'Monochrome',
-        lastName: 'Taisa',
-        email: 'm0.taisa@gmail.com',
-        isAdmin: true,
-        qwacks: [
-          { id: 1, content: 'qwackker is pogger' },
-          { id: 2, content: 'SHUBAA SHUBA SHUBAAAA!!' },
-        ]
-      },
+      user: users[userId.value - 1] || null
     });
 
     const addQwack = (qwack) => {
