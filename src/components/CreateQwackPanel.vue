@@ -78,7 +78,7 @@
         margin: auto 0;
         border-radius: 5px;
         border: none;
-        background-color: yellowgreen;
+        background-color: yellow;
         color: white;
         font-weight: bold;
       }
