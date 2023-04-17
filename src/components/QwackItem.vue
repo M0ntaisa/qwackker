@@ -60,6 +60,10 @@
       padding-top: 5px;
       color: gray;
     }
+
+    &.--draft {
+      background-color: rgb(165, 165, 165);
+    }
   }
 
   
