@@ -45,7 +45,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 10px 5%;
-    background-color: yellow;
+    background-color: yellowgreen;
     color: white;
 
     .navigation__logo {
