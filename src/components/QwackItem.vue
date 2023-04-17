@@ -1,5 +1,5 @@
 <template>
-  <div class="qwack-item">
+  <div class="qwack-item" :class="{'--draft': qwack.type === 'draft' }">
     <div class="user-profile__qwack">
       <div class="qwack-item__user">
         @{{ username }}
