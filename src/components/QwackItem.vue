@@ -1,5 +1,5 @@
 <template>
-  <div class="qwack-item" @click="favouriteQwack(qwack.id)">
+  <div class="qwack-item">
     <div class="user-profile__qwack">
       <div class="qwack-item__user">
         @{{ username }}
@@ -8,7 +8,7 @@
         {{ qwack.content }}
       </div>
       <div class="qwack-item__date">
-        {{ qwack.date }}
+        {{ formattedDate(qwack.datetime) }}
       </div>
     </div>
   </div>
@@ -27,6 +27,13 @@
         required: true
       }
     },
+    methods: {
+      formattedDate(datetime) {
+        const date = new Date(datetime);
+        const options = { timeZone: 'Asia/Makassar' };
+        return date.toLocaleString('en-US', options);
+      }
+    }
   };
 </script>
 
