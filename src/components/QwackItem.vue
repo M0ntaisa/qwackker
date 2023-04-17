@@ -7,6 +7,9 @@
       <div class="qwack-item__content">
         {{ qwack.content }}
       </div>
+      <div class="qwack-item__date">
+        {{ qwack.date }}
+      </div>
     </div>
   </div>
 </template>
