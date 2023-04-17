@@ -7,8 +7,8 @@ export const users = [
     "email": "m0.taisa@gmail.com",
     "isAdmin": true,
     "qwacks": [
-      { "id": 1, "content": "qwackker is pogger" },
-      { "id": 2, "content": "SHUBAA SHUBA SHUBAAAA!!" }
+      { "id": 1, "content": "qwackker is pogger", "date": "2023-03-20" },
+      { "id": 2, "content": "SHUBAA SHUBA SHUBAAAA!!", "date": "2023-03-21" }
     ]
   },
   {
