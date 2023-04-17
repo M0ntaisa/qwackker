@@ -38,10 +38,10 @@
       const newQwackCharCount = computed(() => state.newQwackContent.length);
 
       const createNewQwack = () => {
-        if (state.newQwackContent && state.selectedQwackType !== 'draft') {
+        // if (state.newQwackContent && state.selectedQwackType !== 'draft') {
           ctx.emit('add-qwack', state.newQwackContent);
           state.newQwackContent = '';
-        }
+        // }
       }
 
       return {

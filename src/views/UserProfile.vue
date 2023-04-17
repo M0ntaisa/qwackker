@@ -42,9 +42,9 @@ export default {
       user: users[userId.value - 1] || null
     });
 
-    const addQwack = (qwack) => {
+    const addQwack = (qwack, selectedQwackType) => {
       state.user.qwacks.unshift({
-        id: state.user.qwacks.length + 1, content: qwack
+        id: state.user.qwacks.length + 1, content: qwack, type: selectedQwackType
       });
     }
 
