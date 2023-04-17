@@ -81,6 +81,7 @@
         background-color: yellowgreen;
         color: white;
         font-weight: bold;
+        cursor: pointer;
       }
     }
 

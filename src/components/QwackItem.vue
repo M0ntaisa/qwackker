@@ -47,6 +47,12 @@
     .qwack-item__user {
       font-weight: bold;
     }
+
+    .qwack-item__date {
+      font-size: small;
+      padding-top: 5px;
+      color: gray;
+    }
   }
 
   
