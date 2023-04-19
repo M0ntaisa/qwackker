@@ -35,16 +35,21 @@ export default {
   components: { QwackItem, CreateQwackPanel },
   setup() {
     const route = useRoute();
-    const userId = computed(() => route.params.userId)
+    const userId = computed(() => route.params.userId);
+
+    const currentDatetime = computed(() => {
+      const now = new Date();
+      return now.toISOString();
+    })
 
     const state = reactive({
       followers: 0,
       user: users[userId.value - 1] || null
     });
 
-    const addQwack = (qwack, selectedQwackType) => {
+    const addQwack = (qwack) => {
       state.user.qwacks.unshift({
-        id: state.user.qwacks.length + 1, content: qwack, type: selectedQwackType
+        id: state.user.qwacks.length + 1, content: qwack, datetime: currentDatetime
       });
     }
 
